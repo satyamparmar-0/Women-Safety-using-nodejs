@@ -1,0 +1,62 @@
+<!-- views/shareLocation.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Share Your Location</title>
+  </head>
+  <body>
+    <h1>Share Your Location</h1>
+    <button id="share-location-button">Share My Location</button>
+    <div id="user-location" style="display: none">
+      <p>Your Location:</p>
+      <p id="location-coordinates"></p>
+      <button id="whatsapp-button">Share on WhatsApp</button>
+      <button id="sms-button">Share via SMS</button>
+    </div>
+
+    <script>
+      const shareLocationButton = document.getElementById(
+        "share-location-button"
+      );
+      const userLocationDiv = document.getElementById("user-location");
+      const locationCoordinates = document.getElementById(
+        "location-coordinates"
+      );
+      const whatsappButton = document.getElementById("whatsapp-button");
+      const smsButton = document.getElementById("sms-button");
+
+      shareLocationButton.addEventListener("click", async () => {
+        try {
+          // Get the user's geolocation
+          const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+
+          const { latitude, longitude } = position.coords;
+
+          // Display user's location
+          locationCoordinates.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+          userLocationDiv.style.display = "block";
+
+          // Generate sharing links
+          const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+          const whatsappLink = `https://wa.me/?text=Check%20out%20my%20location:%20${locationLink}`;
+          const smsLink = `sms:?body=Check%20out%20my%20location:%20${locationLink}`;
+
+          // Set the links for the buttons
+          whatsappButton.addEventListener("click", () => {
+            window.open(whatsappLink, "_blank");
+          });
+
+          smsButton.addEventListener("click", () => {
+            window.open(smsLink, "_blank");
+          });
+        } catch (error) {
+          console.error("Error getting user location:", error);
+        }
+      });
+    </script>
+  </body>
+</html>

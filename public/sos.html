@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SOS Button</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <button id="sosButton">SOS</button>
+
+    <script>
+      $(document).ready(function () {
+        $("#sosButton").click(function () {
+          const jsonData = {
+            name: "Rahul",
+            location: "Main St, City",
+            message: "Emergency! Please send help.",
+          };
+
+          // Convert the JavaScript object to a JSON string
+          const jsonString = JSON.stringify(jsonData);
+
+          // Make an AJAX POST request to the SOS endpoint
+          $.ajax({
+            type: "POST",
+            url: "/sos",
+            data: jsonString, // Send the JSON data as a string
+            contentType: "application/json", // Set the content type to JSON
+            success: function (response) {
+              alert("SOS request sent!");
+            },
+            error: function (error) {
+              console.error("SOS request error:", error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

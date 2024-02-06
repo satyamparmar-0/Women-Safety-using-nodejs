@@ -1,0 +1,63 @@
+<!-- views/profile.ejs -->
+
+<!-- <h1>User Profile</h1> -->
+
+<!--<a href="/user/edit-profile?id=<%= user._id %>">Edit Profile</a> -->
+<head>
+  <link rel="stylesheet" href="/css/profile.css">
+  <script>src="/js/profile.js"</script>
+</head>
+
+<form class="form" method="POST" action="/send-sms">
+  <h2>User Profile</h2>
+  <div class="form-group">
+    <label for="name">Full Name:</label>
+    <div class="relative">
+      <input class="form-control" id="name" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Username should only contain letters. e.g. Piyush Gupta" autocomplete="" placeholder="Type your name here..." value="<%= user.name %>">
+      <i class="fa fa-user"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <div class="relative">
+      <input class="form-control" type="email" required="" placeholder="Type your email address..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<%= user.email %>">
+      <i class="fa fa-envelope"></i>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="contactNumber">Contact Number:</label>
+    <div class="relative">
+      <input class="form-control" type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Type your Mobile Number..." value="<%= user.contactNumber %>">
+      <i class="fa fa-phone"></i>
+    </div>
+  <div class="form-group">
+    <label for="contactNumber">BloodGroup:</label>
+    <div class="relative">
+      <input class="form-control" type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Type your Mobile Number..." value="<%= user.bloodGroup %>">
+      <i class="fa fa-phone"></i>
+    </div>
+  <div class="form-group">
+    <label for="contactNumber">Address</label>
+    <div class="relative">
+      <input class="form-control" type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Type your Address..." value="<%= user.address %>">
+      <i class="fa fa-phone"></i>
+    </div>
+  <!-- <div class="form-group">
+    <label for="contactNumber">Contact Number:</label>
+    <div class="relative">
+      <input class="form-control" type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Type your Mobile Number..." value="<%= user.contactNumber %>">
+      <i class="fa fa-phone"></i>
+    </div>
+  </div> -->
+  <!-- Add other fields as needed -->
+  <div class="tright">
+    <a href="/user/edit-profile/<%= user._id %>"><button class="movebtn movebtnre" type="Reset"></button><i class="fa fa-fw fa-refresh"></i> Edit Profile </button></a>
+    <a href=""><button class="movebtn movebtnsu" type="Submit">Submit <i class="fa fa-fw fa-paper-plane"></i></button></a>
+  </div>
+  </form>
+<div class="thanks" style="display: none;">
+  <h4>Thank you!</h4>
+  <p><small>Your message has been successfully sent.</small></p>
+</div>
+
+
