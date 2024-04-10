@@ -1,13 +1,12 @@
 const EmergencyService = require('../models/phone');
 
 exports.callEmergency = (req, res) => {
-  const { serviceType } = req.params; // 'police' or 'ambulance'
-
+  const { serviceType } = req.params; 
   let emergencyNumber;
   if (serviceType === 'police') {
-    emergencyNumber = '911'; // Replace with the appropriate police emergency number in your region.
+    emergencyNumber = '911'; 
   } else if (serviceType === 'ambulance') {
-    emergencyNumber = '112'; // Replace with the appropriate ambulance emergency number in your region.
+    emergencyNumber = '112'; 
   } else {
     return res.status(400).json({ error: 'Invalid service type' });
   }
