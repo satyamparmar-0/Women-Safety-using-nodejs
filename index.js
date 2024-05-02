@@ -3,10 +3,10 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const app = express()
 const port = 3000;
-const passport = require('./passport-config');
+// const passport = require('./passport-config');
 const session = require('express-session');
 const crypto = require('crypto'); // Import the crypto library
-const sosRequests = require('./routes/sosData')
+// const sosRequests = require('./routes/sosData')
 
 
 app.use(express.json());
@@ -20,8 +20,8 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Add this middleware to serve static files from the /public directory
 app.use(express.static(path.join(__dirname, 'public')));

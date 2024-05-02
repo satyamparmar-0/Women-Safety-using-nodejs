@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const twilio = require('twilio')('AC518016354dfdff431a3c8132ac42cbad', 'YOUR_TWILIO_AUTH_TOKEN');
+const twilio = require('twilio')('AC518016354dfdff431a3c8132ac42cbad', 'e703e79317b512feaad6d67270a5f676');
 
 // Render user profile page
 exports.getProfile = (req, res) => {
@@ -43,8 +43,8 @@ exports.sendSMS = async (req, res) => {
     for (const contact of selectedContacts) {
       await twilio.messages.create({
         body: 'Check out my location: https://www.google.com/maps?q=latitude,longitude',
-        from: 'YOUR_TWILIO_PHONE_NUMBER',
-        to: contact,
+        from: '+12108122734',
+        to: phoneNumbers,
       });
     }
     res.status(200).send('SMS sent successfully.');
